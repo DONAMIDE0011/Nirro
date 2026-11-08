@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIROFLOW</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- PREMIUM NIROFLOW LANDING PAGE -->
+<section class="landing">
+  <div class="landing-glow"></div>
+
+  <header class="site-nav">
+    <a class="brand" href="#home" onclick="location.reload(); return false;" aria-label="Niro flow home">
+      <span class="brand-mark">↗</span>
+      <span>Niro <em>flow</em></span>
+    </a>
+
+
+    <button class="nav-dive" onclick="startFromLanding()">Dive In <span>→</span></button>
+  </header>
+
+  <div class="hero-layout" id="home">
+
+    <div class="hero-copy">
+      <div class="hero-kicker"><span>✧</span> Plan <b>·</b> Track <b>·</b> Achieve</div>
+
+      <h1>Take Control of<br>Your Money <em>Flow</em></h1>
+
+      <p class="hero-description">
+        Plan your budget, set your goals, track your progress
+        <br class="desktop-break">
+        and build a smarter financial future with
+        <strong>Niro flow.</strong>
+      </p>
+
+      <button class="hero-dive" onclick="startFromLanding()">Dive In <span>→</span></button>
+
+      <div class="hero-benefits">
+        <div><span>♢</span><small>Smart<br>Planning</small></div>
+        <div><span>↗</span><small>Goal<br>Tracking</small></div>
+        <div><span>♧</span><small>Helpful<br>Insights</small></div>
+        <div><span>☺</span><small>A Better<br>You</small></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" role="img" aria-label="Niroflow financial planning illustration with a smartphone, piggy bank, coins, growth chart and notebook"></div>
+
+  </div>
+
+  <div class="landing-tagline">
+    <span></span> Flow Smart. Live <em>Better.</em>
+  </div>
+</section>
+<!-- LOGIN / SIGN UP -->
+<section id="authPage">
+  <div class="auth-card">
+
+    <a class="brand auth-brand" href="#" onclick="backToLanding(); return false;">
+      <span class="brand-mark">↗</span>
+      <span>Niro <em>flow</em></span>
+    </a>
+
+    <h2 id="authTitle">Welcome back.</h2>
+    <p class="auth-sub" id="authSub">Log in to continue your flow.</p>
+
+    <div class="auth-field" id="authNameField" style="display:none;">
+      <label for="authName">YOUR NAME</label>
+      <input type="text" id="authName" placeholder="e.g. Niro" autocomplete="name">
+    </div>
+
+    <div class="auth-field">
+      <label for="authEmail">EMAIL</label>
+      <input type="email" id="authEmail" placeholder="you@example.com" autocomplete="email">
+    </div>
+
+    <div class="auth-field">
+      <label for="authPassword">PASSWORD</label>
+      <input type="password" id="authPassword" placeholder="At least 6 characters" autocomplete="current-password">
+    </div>
+
+    <p class="auth-message" id="authMessage"></p>
+
+    <button type="button" class="auth-submit" id="authSubmit" onclick="submitAuth()">LOG IN →</button>
+
+    <button type="button" class="auth-link" id="authForgot" onclick="resetPassword()">Forgot password?</button>
+
+    <p class="auth-switch">
+      <span id="authSwitchText">New here?</span>
+      <button type="button" class="auth-link" id="authSwitchBtn" onclick="switchAuthMode()">Create an account</button>
+    </p>
+
+  </div>
+</section>
+
+
+
+<!-- MAIN APP -->
+<section class="app-page" id="appPage">
+
+    <!-- DASHBOARD -->
+    <div id="dashboard">
+
+    <div class="top-bar">
+    <div>
+        <p class="small-text">WELCOME BACK</p>
+        <h2>Let's plan your flow.</h2>
+    </div>
+    <div class="top-bar-right">
+        <button type="button" class="logout-button" onclick="logOut()">Log out</button>
+        <div class="profile" id="profileInitial">N</div>
+    </div>
+</div>
+
+
+        <!-- MONTH SELECTOR -->
+        <div class="month-selector">
+            <button onclick="changeMonth(-1)">‹</button>
+
+            <div>
+                <span>MONTH</span>
+                <strong id="currentMonth">October 2026</strong>
+            </div>
+
+            <button onclick="changeMonth(1)">›</button>
+        </div>
+
+        <!-- MONEY AVAILABLE -->
+        <div class="money-card">
+            <p>Money available</p>
+            <h1 id="dashboardMoney">₦0</h1>
+            <span>For this month</span>
+        </div>
+
+        <div class="section-title">
+            <h3>What do you want to do?</h3>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="quick-actions">
+
+            <button onclick="openPlanner()">
+                <span>＋</span>
+                <strong>Plan my money</strong>
+                <small>Create your monthly plan</small>
+            </button>
+
+            <button onclick="openGoals()">
+                <span>◎</span>
+                <strong>New goal</strong>
+                <small>Save towards something</small>
+            </button>
+
+            <button onclick="openNotes()">
+                <span>₦</span>
+                <strong>NIRO Notes</strong>
+                <small>Write what's on your mind</small>
+            </button>
+
+            <button onclick="openInsights()">
+                <span>◈</span>
+                <strong>My insights</strong>
+                <small>Understand your money flow</small>
+            </button>
+                        <button onclick="openBucket()">
+                <span>✓</span>
+                <strong>Bucket list</strong>
+                <small>Things to do before you're done</small>
+            </button>
+
+        </div>
+
+        <!-- MONEY FLOW -->
+        <div class="flow-section">
+
+            <div class="section-title">
+                <h3>Your flow</h3>
+                <span id="dashboardPercentage">0%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress" id="dashboardProgress"></div>
+            </div>
+
+            <p class="flow-message" id="dashboardFlowMessage">
+                Create your first plan to see your money flow.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- MONTHLY PLAN PAGE -->
+    <div id="plannerPage">
+
+        <button class="back-button" onclick="closePlanner()">← Back</button>
+
+        <p class="small-text">MONTHLY PLAN</p>
+
+        <h2>Plan your money.</h2>
+
+        <p class="planner-description">
+            How much money do you have available for this month?
+        </p>
+
+        <div class="amount-input">
+            <span>₦</span>
+            <input type="number" id="availableMoney" placeholder="0" min="0">
+        </div>
+
+        <button class="continue-button" onclick="startPlanning()">
+            CONTINUE →
+        </button>
+
+    </div>
+
+
+    <!-- ALLOCATION PAGE -->
+    <div id="allocationPage">
+
+        <button class="back-button" onclick="backToPlanner()">← Back</button>
+
+        <p class="small-text">BUILD YOUR FLOW</p>
+
+        <h2>Where should your money go?</h2>
+
+        <p class="planner-description">
+            Give every part of your money a purpose.
+        </p>
+
+        <div id="budgetWarning" class="budget-warning">
+            <strong>PLAN OVER BUDGET</strong>
+            <p id="budgetWarningText"></p>
+        </div>
+
+        <div class="allocation-summary">
+
+            <div>
+                <span>AVAILABLE</span>
+                <strong id="totalMoney">₦0</strong>
+            </div>
+
+            <div>
+                <span>REMAINING</span>
+                <strong id="remainingMoney">₦0</strong>
+            </div>
+
+        </div>
+
+        <input type="hidden" id="availableForAllocation">
+
+        <div class="category-list">
+
+            <div class="category">
+                <div class="category-info">
+                    <strong>🍛 Food</strong>
+                    <small>Meals & groceries</small>
+                </div>
+                <div class="category-input">
+                    <span>₦</span>
+                    <input type="number" class="allocation-input" data-category="Food" placeholder="0" min="0" oninput="updateAllocation()">
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-info">
+                    <strong>🚌 Transport</strong>
+                    <small>Movement & travel</small>
+                </div>
+                <div class="category-input">
+                    <span>₦</span>
+                    <input type="number" class="allocation-input" data-category="Transport" placeholder="0" min="0" oninput="updateAllocation()">
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-info">
+                    <strong>🎓 School</strong>
+                    <small>Academic expenses</small>
+                </div>
+                <div class="category-input">
+                    <span>₦</span>
+                    <input type="number" class="allocation-input" data-category="School" placeholder="0" min="0" oninput="updateAllocation()">
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-info">
+                    <strong>📱 Data</strong>
+                    <small>Internet & communication</small>
+                </div>
+                <div class="category-input">
+                    <span>₦</span>
+                    <input type="number" class="allocation-input" data-category="Data" placeholder="0" min="0" oninput="updateAllocation()">
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-info">
+                    <strong>🎯 Savings</strong>
+                    <small>Future goals</small>
+                </div>
+                <div class="category-input">
+                    <span>₦</span>
+                    <input type="number" class="allocation-input" data-category="Savings" placeholder="0" min="0" oninput="updateAllocation()">
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-info">
+                    <strong>🎮 Fun</strong>
+                    <small>Entertainment & leisure</small>
+                </div>
+                <div class="category-input">
+                    <span>₦</span>
+                    <input type="number" class="allocation-input" data-category="Fun" placeholder="0" min="0" oninput="updateAllocation()">
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-info">
+                    <strong>📦 Miscellaneous</strong>
+                    <small>Other unexpected expenses</small>
+                </div>
+                <div class="category-input">
+                    <span>₦</span>
+                    <input type="number" class="allocation-input" data-category="Miscellaneous" placeholder="0" min="0" oninput="updateAllocation()">
+                </div>
+            </div>
+
+        </div>
+
+        <button class="continue-button" onclick="savePlan()">
+            SAVE MY PLAN →
+        </button>
+
+    </div>
+
+
+    <!-- NOTES PAGE -->
+    <div id="notesPage">
+
+        <button class="back-button" onclick="closeNotes()">← Back</button>
+
+        <p class="small-text">NIRO NOTES</p>
+
+        <h2>What's on your mind?</h2>
+
+        <p class="planner-description">
+            Write it down. Clear your mind.
+            Keep your thoughts in one place.
+        </p>
+
+        <div class="note-input-group">
+            <label for="noteTitle">NOTE TITLE</label>
+            <input type="text" id="noteTitle" placeholder="Give your note a title">
+        </div>
+
+        <div class="note-input-group">
+            <label for="noteContent">YOUR THOUGHTS</label>
+            <textarea id="noteContent" placeholder="Write whatever is on your mind..."></textarea>
+        </div>
+
+        <button class="continue-button" onclick="saveNote()">
+            SAVE NOTE →
+        </button>
+
+        <div class="notes-dashboard">
+
+            <div class="section-title">
+                <h3>Your notes</h3>
+                <span>REFLECTIONS</span>
+            </div>
+
+            <div id="notesDisplay">
+                <p class="empty-note">
+                    Write your first note to see it here.
+                </p>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- INSIGHTS PAGE -->
+    <div id="insightsPage">
+
+        <button class="back-button" onclick="closeInsights()">← Back</button>
+
+        <p class="small-text">YOUR INSIGHTS</p>
+
+        <h2>Understand your flow.</h2>
+
+        <p class="planner-description">
+            A quick look at how your money is planned this month.
+        </p>
+
+        <div id="insightsContent">
+
+            <div class="insight-card">
+                <span class="insight-label">PLAN STATUS</span>
+                <strong id="insightStatus">No plan yet</strong>
+                <p id="insightStatusText">Create a monthly plan to see your insights.</p>
+            </div>
+
+            <div class="insight-card">
+                <span class="insight-label">ALLOCATED</span>
+                <strong id="insightAllocated">₦0</strong>
+                <p>Money currently assigned to your categories.</p>
+            </div>
+
+            <div class="insight-card">
+                <span class="insight-label">UNALLOCATED</span>
+                <strong id="insightRemaining">₦0</strong>
+                <p>Money that still has no assigned purpose.</p>
+            </div>
+
+            <div class="insight-card">
+                <span class="insight-label">BIGGEST ALLOCATION</span>
+                <strong id="insightBiggest">No allocations yet</strong>
+                <p>This category currently takes the largest share of your plan.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- GOALS PAGE -->
+    <div id="goalsPage">
+
+        <button class="back-button" onclick="closeGoals()">← Back</button>
+
+        <p class="small-text">YOUR GOALS</p>
+
+        <h2>What are you working towards?</h2>
+
+        <p class="planner-description">
+            Set a target and track your progress.
+        </p>
+
+        <div class="goal-input-group">
+            <label for="goalName">GOAL NAME</label>
+            <input type="text" id="goalName" placeholder="e.g. New laptop">
+        </div>
+
+        <div class="goal-input-group">
+            <label for="goalTarget">TARGET AMOUNT</label>
+            <div class="goal-amount-input">
+                <span>₦</span>
+                <input type="number" id="goalTarget" placeholder="0" min="1">
+            </div>
+        </div>
+
+        <div class="goal-input-group">
+            <label for="goalCurrent">HOW MUCH HAVE YOU SET ASIDE?</label>
+            <div class="goal-amount-input">
+                <span>₦</span>
+                <input type="number" id="goalCurrent" placeholder="0" min="0">
+            </div>
+        </div>
+
+        <button class="continue-button" id="createGoalButton" onclick="createGoal()">
+            CREATE GOAL →
+        </button>
+
+        <div class="goals-dashboard">
+
+            <div class="section-title">
+                <h3>Your goals</h3>
+                <span>TRACKING</span>
+            </div>
+
+            <div id="goalDisplay">
+                <p class="empty-goal">
+                    Create a goal to start tracking your progress.
+                </p>
+            </div>
+
+        </div>
+
+
+    </div>
+        <!-- BUCKET LIST PAGE -->
+    <div id="bucketPage">
+
+        <button class="back-button" onclick="closeBucket()">← Back</button>
+
+        <p class="small-text">YOUR BUCKET LIST</p>
+
+        <h2>Things to do before you're done.</h2>
+
+        <p class="planner-description">
+            Write down what you want to experience, then tick it off when it's done.
+        </p>
+
+        <div class="bucket-add">
+            <input type="text" id="bucketInput" placeholder="e.g. Travel to Zanzibar" maxlength="80">
+            <button type="button" onclick="addBucketItem()">ADD</button>
+        </div>
+
+        <div class="bucket-card">
+            <div class="section-title">
+                <h3>My list</h3>
+                <span id="bucketCount">0 of 0 done</span>
+            </div>
+
+            <div class="bucket-progress"><div id="bucketProgress"></div></div>
+
+            <ul id="bucketList">
+                <li class="bucket-empty">Your bucket list is empty. Add your first dream above.</li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</section>
+
+<script src="script.js"></script>
+<script type="module" src="auth.js"></script>
+
+
+</body>
+</html>
